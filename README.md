@@ -1,0 +1,1 @@
+# elastic.io component for the Adobe Marketo

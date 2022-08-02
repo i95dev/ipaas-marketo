@@ -1,0 +1,14 @@
+{
+  "title": "Adobe Marketo Component",
+  "description": "elastic.io component for the Adobe Marketo",
+  "docsUrl": "https://github.com/i95dev/ipaas-marketo",
+  "credentials": {
+    "fields": {
+      "accessToken": {
+        "label": "Access Token",
+        "viewClass": "PasswordFieldView",
+        "required": true
+      }
+    }
+  }
+}
