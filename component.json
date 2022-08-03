@@ -8,7 +8,21 @@
         "label": "Access Token",
         "viewClass": "PasswordFieldView",
         "required": true
+      },
+      "apiUrl": {
+    "label": "Marketo API endpoint",
+    "viewClass": "TextAreaView",
+    "required": true
+   }
+    }
+  },
+  "triggers": {
+  "GetLeadById": {
+      "title": "Get Lead By Id",
+      "main": "triggers.GetLeade",
+      "metadata": {
+        "in": "schemas/getLead.in.json"
       }
     }
-  }
+}
 }
