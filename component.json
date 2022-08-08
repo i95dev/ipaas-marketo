@@ -24,5 +24,20 @@
         "in": "schemas/getLead.in.json"
       }
     }
+},
+"actions": {
+ "createLead": {
+      "title": "Create Lead",
+      "main": "actions.CreateLead",
+      "dynamicMetadata": "providers.LeadMetaDataProvider"
+      
+   },
+   "AddLeadToList": {
+      "title": "Get Lead By Id",
+      "main": "actions.AddLeadTOList",
+      "metadata": {
+        "in": "schemas/AddLeadTOList.in.json"
+      }
+    }
 }
 }

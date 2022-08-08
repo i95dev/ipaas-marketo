@@ -1,6 +1,7 @@
 package Utils;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -18,9 +19,12 @@ import org.apache.http.HttpRequest;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,6 +122,30 @@ public class HttpUtils {
 		httpGet.addHeader("Authorization", "Bearer " + accessToken);
 		return httpGet;
 
+	}
+	public static final HttpPost createPostObjectRequest(final JsonObject configuration, final String objectType,
+			final JsonObject body) {
+
+		logger.info("input data is " + body.toString());
+		for(String s : body.keySet()){
+			logger.info(s + ":" + body.get(s));
+		}
+		final String baseUri =HttpUtils.authorizeRequest(configuration)+objectType;
+
+		HttpPost httpPost = new HttpPost(baseUri);
+
+
+		try {
+			httpPost.setEntity(new StringEntity(body.toString()));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+		httpPost.addHeader(HTTP.CONTENT_TYPE, "application/json");
+		
+		String accessToken =configuration.getString("accessToken");
+		httpPost.addHeader("Authorization", "Bearer " + accessToken);
+		logger.info(httpPost.getEntity().toString() + "was entity set to post");
+		return httpPost;
 	}
 	
 

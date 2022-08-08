@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "ListID": {
+      "type": "string",
+      "required": true,
+      "title": "List Id"
+    },
+    "LeadId": {
+      "type": "string",
+      "required": true,
+      "title": "Lead Id"
+    }
+    
+  }
+}
