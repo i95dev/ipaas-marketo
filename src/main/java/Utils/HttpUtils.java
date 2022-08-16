@@ -114,7 +114,7 @@ public class HttpUtils {
 	}
 	
 	public static HttpGet createGetRequest(final JsonObject configuration, final String query) {
-		final String requestURI = HttpUtils.authorizeRequest(configuration) + query;
+		final String requestURI = HttpUtils.authorizeRequest(configuration)+query;
 		final HttpGet httpGet = new HttpGet(requestURI);
 		
 		httpGet.addHeader("Accept", "application/json");
@@ -146,6 +146,15 @@ public class HttpUtils {
 		httpPost.addHeader("Authorization", "Bearer " + accessToken);
 		logger.info(httpPost.getEntity().toString() + "was entity set to post");
 		return httpPost;
+	}
+	public static final HttpPost createPostRequest(final JsonObject configuration, final String query) {
+		final String requestURI = HttpUtils.authorizeRequest(configuration)+query;
+		final HttpPost httppost = new HttpPost(requestURI);
+		
+		String accessToken =configuration.getString("accessToken");
+		httppost.addHeader("Authorization", "Bearer " + accessToken);
+		
+		return httppost;
 	}
 	
 

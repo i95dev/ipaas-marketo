@@ -32,12 +32,35 @@
       "dynamicMetadata": "providers.LeadMetaDataProvider"
       
    },
-   "AddLeadToList": {
+
+"LeadToList": {
       "title": "Get Lead By Id",
       "main": "actions.AddLeadTOList",
       "metadata": {
         "in": "schemas/AddLeadTOList.in.json"
       }
-    }
+    },
+    "BulkLeadExtract": {
+      "title": "extract the lead in bulk",
+      "main": "actions.BulkLeadExtract",
+      
+       "metadata": {
+        "in": "schemas/bulkLeadExtract.in.json"
+      },
+
+      "fields":{
+          "label": "Fields for output",
+          "required": true,
+          "viewClass": "MultiSelectView",
+          "model": "providers.LeadMetaDataProvider"
+        
+      }
+      }
+      
+      }
+    
+    
+    
 }
-}
+
+
