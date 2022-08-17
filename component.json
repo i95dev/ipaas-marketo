@@ -1,14 +1,69 @@
 {
-  "title": "Adobe Marketo Component",
-  "description": "elastic.io component for the Adobe Marketo",
-  "docsUrl": "https://github.com/i95dev/ipaas-marketo",
-  "credentials": {
-    "fields": {
-      "accessToken": {
-        "label": "Access Token",
-        "viewClass": "PasswordFieldView",
-        "required": true
+	"title": "Adobe Marketo Component",
+	"description": "elastic.io component for the Adobe Marketo",
+	"docsUrl": "https://github.com/i95dev/ipaas-marketo",
+	"credentials": {
+		"fields": {
+			"accessToken": {
+				"label": "Access Token",
+				"viewClass": "PasswordFieldView",
+				"required": true
+			},
+			"apiUrl": {
+				"label": "Marketo API endpoint",
+				"viewClass": "TextAreaView",
+				"required": true
+			}
+		}
+	},
+	"triggers": {
+		"GetLeadById": {
+			"title": "Get Lead By Id",
+			"main": "io.elastic.i95dev.marketo.triggers.GetLead",
+			"metadata": {
+				"in": "schemas/getLead.in.json"
+			}
+		},
+		
+	"actions": {
+		"createOpportunity": {
+			"title": "Create Opportunities",
+			"main": "io.elastic.i95dev.marketo.actions.CreateOpportunity",
+			"dynamicMetadata": "io.elastic.i95dev.marketo.providers.OpportunityMetaDataProvider"
+		}
+	},
+	"createProgram": {
+		"title": "Create Program",
+		"main": "io.elastic.i95dev.marketo.actions.CreateProgram",
+		"dynamicMetadata": "io.elastic.i95dev.marketo.providers.ProgramMetaDataProvider"
+	},
+	 "BulkProgramMemberExtract": {
+      "title": "Bulk Extract Program Member",
+      "main": "io.elastic.i95dev.marketo.actions.BulkProgramMemberExtract",
+      "dynamicMetadata": "",
+      "fields": {
+         "properties":{
+         
+         "label": "Select Fields For Output",
+         "type":"Array",
+          "required": true,
+          "viewClass": "MultiSelectView",
+          "model": "io.elastic.i95dev.marketo.providers.BulkProgramMemberExtractProvider"
+          },
+          "filter":{
+          "programId":{
+          "label":"program Id",
+          "required":true,
+          "viewClass":"TextFieldWithNoteView",
+          "model": "io.elastic.i95dev.marketo.providers.ProgramIDMetaDataProvider"
+          
+          }
+          }
+        }
       }
     }
-  }
-}
+ }
+ 
+
+  
+
