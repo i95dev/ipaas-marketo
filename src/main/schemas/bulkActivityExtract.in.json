@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+     
+   "format": "CSV",
+        
+        "filter": {
+        "createdAt":{
+        "startAt":{
+         "label": "Start Date",
+          "required": true,
+          "type":"String",
+          "viewClass": "TextFieldWithNoteView"
+          },
+          "endAt":{
+          "label": "End Date",
+          
+          "required": true,
+          "type":"String",
+          "viewClass": "TextFieldWithNoteView"
+          }
+          }
+        
+      }
+     }
+   }
+        
+
+
+
+        
+        
+      
+  
+
+  

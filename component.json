@@ -8,7 +8,101 @@
         "label": "Access Token",
         "viewClass": "PasswordFieldView",
         "required": true
+      },
+      "apiUrl": {
+    "label": "Marketo API endpoint",
+    "viewClass": "TextAreaView",
+    "required": true
+   }
+    }
+  },
+  "triggers": {
+  "GetLeadById": {
+      "title": "Get Lead By Id",
+      "main": "io.elastic.i95dev.marketo.triggers.GetLeads",
+      "metadata": {
+        "in": "schemas/getLead.in.json"
       }
     }
-  }
-}
+},
+"actions": {
+ "createLead": {
+      "title": "Create Lead",
+      "main": "io.elastic.i95dev.marketo.actions.CreateLead",
+      "dynamicMetadata": "providers.LeadMetaDataProvider"
+      
+   },
+
+"LeadToList": {
+      "title": "Get Lead By Id",
+      "main": "io.elastic.i95dev.marketo.actions.AddLeadTOList",
+      "metadata": {
+        "in": "schemas/AddLeadTOList.in.json"
+      }
+    },
+    
+    
+    "BulkLeadExtract": {
+      "title": "extract the lead in bulk",
+      "main": "io.elastic.i95dev.marketo.actions.BulkLeadExtract",
+      
+       "metadata": {
+        "in": "schemas/bulkLeadExtract.in.json"
+      },
+
+      "fields":{
+          "label": "Fields for output",
+          "required": true,
+          "viewClass": "MultiSelectView",
+          "model": "providers.LeadMetaDataProvider"
+        
+      }
+      },
+      
+       "CreateBulkProgramMemberExtract": {
+			"title": "Bulk Extract Program Member",
+			"main": "io.elastic.i95dev.marketo.actions.CreateBulkExportProgram",
+			"dynamicMetadata": "",
+			"fields": {
+				"properties": {
+					"label": "Select Fields For Output",
+					"type": "Array",
+					"required": true,
+					"viewClass": "MultiSelectView",
+					"model": "io.elastic.i95dev.marketo.providers.BulkExportProgramProvider"
+				},
+				"filter": {
+					"programId": {
+						"label": "program Id",
+						"required": true,
+						"viewClass": "TextFieldWithNoteView",
+						"model": "io.elastic.i95dev.marketo.providers.ProgramIdProvider"
+					}
+				}
+			}
+		},
+      
+      
+      "BulkActivityExtract": {
+      "title": "extract bulk activities",
+      "main": "io.elastic.i95dev.marketo.actions.BulkActivityExtract",
+     
+      
+       "metadata": {
+        "in": "schemas/bulkActivityExtract.in.json"
+   },
+    "fields":{
+    "activityTypeId's":{
+          "label": "activity Type Ids",
+          "type":"array",
+          "required": true,
+          "viewClass": "MultiSelectView",
+          "model": "io.elastic.i95dev.marketo.providers.BulkActivityProvider"
+        
+      }
+      
+      }
+      }
+    }
+    }
+    
