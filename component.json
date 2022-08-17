@@ -24,45 +24,60 @@
 				"in": "schemas/getLead.in.json"
 			}
 		},
-		
-	"actions": {
-		"createOpportunity": {
-			"title": "Create Opportunities",
-			"main": "io.elastic.i95dev.marketo.actions.CreateOpportunity",
-			"dynamicMetadata": "io.elastic.i95dev.marketo.providers.OpportunityMetaDataProvider"
-		}
-	},
-	"createProgram": {
-		"title": "Create Program",
-		"main": "io.elastic.i95dev.marketo.actions.CreateProgram",
-		"dynamicMetadata": "io.elastic.i95dev.marketo.providers.ProgramMetaDataProvider"
-	},
-	 "BulkProgramMemberExtract": {
-      "title": "Bulk Extract Program Member",
-      "main": "io.elastic.i95dev.marketo.actions.BulkProgramMemberExtract",
-      "dynamicMetadata": "",
-      "fields": {
-         "properties":{
-         
-         "label": "Select Fields For Output",
-         "type":"Array",
+		"actions": {
+		"createLead": {
+			"title": "Create Lead",
+			"main": "actions.CreateLead",
+			"dynamicMetadata": "providers.LeadMetaDataProvider"
+		},
+		"LeadToList": {
+			"title": "Get Lead By Id",
+			"main": "actions.AddLeadTOList",
+			"metadata": {
+				"in": "schemas/AddLeadTOList.in.json"
+			}
+		},
+		 "BulkLeadExtract": {
+      "title": "extract the lead in bulk",
+      "main": "actions.BulkLeadExtract",
+      
+       "metadata": {
+        "in": "schemas/bulkLeadExtract.in.json"
+      },
+
+      "fields":{
+          "label": "Fields for output",
           "required": true,
           "viewClass": "MultiSelectView",
-          "model": "io.elastic.i95dev.marketo.providers.BulkProgramMemberExtractProvider"
-          },
-          "filter":{
-          "programId":{
-          "label":"program Id",
-          "required":true,
-          "viewClass":"TextFieldWithNoteView",
-          "model": "io.elastic.i95dev.marketo.providers.ProgramIDMetaDataProvider"
-          
-          }
-          }
-        }
-      }
-    }
- }
+          "model": "providers.LeadMetaDataProvider"
+        
+      },
+		"BulkProgramMemberExtract": {
+			"title": "Bulk Extract Program Member",
+			"main": "io.elastic.i95dev.marketo.actions.BulkProgramMemberExtract",
+			"dynamicMetadata": "",
+			"fields": {
+				"properties": {
+					"label": "Select Fields For Output",
+					"type": "Array",
+					"required": true,
+					"viewClass": "MultiSelectView",
+					"model": "io.elastic.i95dev.marketo.providers.BulkProgramMemberExtractProvider"
+				},
+				"filter": {
+					"programId": {
+						"label": "program Id",
+						"required": true,
+						"viewClass": "TextFieldWithNoteView",
+						"model": "io.elastic.i95dev.marketo.providers.ProgramIDMetaDataProvider"
+					}
+				}
+			}
+		}
+	}
+}
+}
+}
  
 
   
