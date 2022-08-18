@@ -37,8 +37,19 @@ import java.io.StringReader;
 			final JsonObject configuration = parameters.getConfiguration();
 			final JsonObject body = parameters.getMessage().getBody();
 			
+			String format = body.getJsonString("format"); //CSV
+			String start = body.getJsonString("startdate"); // 2017-07-01T23:59:59-00:00
+			String end = body.getJsonString("enddate"); // 2017-07-01T23:59:59-00:00
+			
+			JsonObject dateobject = Json.createObjectBuilder().add("startAt", start).add("endAt", end).build();
+			JsonObject createdAtobject = Json.createObjectBuilder().add("createdAt", dateobject).build();
+			
+			JsonObject requestObj = Json.createObjectBuilder().add("format", format).add("filter", createdAtobject).build();
+                                
+			
+			
 			String endpoint="/bulk/v1/activities/export/create.json";
-			HttpPost post=HttpUtils.createPostObjectRequest(configuration, endpoint, body);
+			HttpPost post=HttpUtils.createPostObjectRequest(configuration, endpoint, requestObj);
 			try {
 				String resp=HttpUtils.sendRequest(post);
 				
