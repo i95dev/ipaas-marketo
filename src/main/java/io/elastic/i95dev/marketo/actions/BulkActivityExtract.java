@@ -21,6 +21,14 @@ import java.io.StringReader;
 
 	public class BulkActivityExtract implements Function {
 		private static final Logger logger=LoggerFactory.getLogger(BulkActivityExtract.class);
+		
+		public void sendResponse(ExecutionParameters parameters, String output){
+			JsonReader Reader = Json.createReader(new StringReader(output));
+	                JsonObject outputObject = Reader.readObject();
+	                Reader.close();
+	                final Message response= new Message.Builder().body(outputObject).build();
+			parameters.getEventEmitter().emitData(response);
+		}
 
 		@Override
 		public void execute(ExecutionParameters parameters) {
@@ -60,12 +68,19 @@ import java.io.StringReader;
 	                JsonValue status1=obj.getJsonString("status");
 	                String sts=status1.toString();
 	            	String status=sts;
+			    
+			if(status.equals("Failed")){
+				sendResponse(parameters, "Export Job status is Failed in Marketo");
+				return;
+			}
 	                
 	                
 	                
 	                
 	                while(!status.equals("Completed"))  {
 	                	Thread.sleep(60000);
+				
+				
 	                	
 	                	String statusEndpoint1="/bulk/v1/activities/export/"+exportId.getString()+"/status.json";
 	                	HttpGet statusReq1=HttpUtils.createGetRequest(configuration, statusEndpoint1);
@@ -80,17 +95,21 @@ import java.io.StringReader;
 	                    JsonValue status2=obj.getJsonString("status");
 	                    String sts1=status1.toString();
 	                    status=sts1;
+				// failed
+				if(status.equals("Failed")){
+					sendResponse(parameters, "Export Job status is Failed in Marketo");
+					return;
+				}
 	                   }
-	                    String  query="/bulk/v1/activities/export/"+exportId.getString()+"/file.json";
+	                    
+			    String  query="/bulk/v1/activities/export/"+exportId.getString()+"/file.json";
 	            		HttpGet get=HttpUtils.createGetRequest(configuration, query);
 	            		String output=HttpUtils.sendRequest(get);
+			  
+			    // success
+			    sendResponse(parameters, output);
 	            		
-	            		JsonReader Reader = Json.createReader(new StringReader(output));
-	                    JsonObject outputObject = Reader.readObject();
-	                    Reader.close();
-	                    final Message response= new Message.Builder().body(outputObject).build();
-
-	                    parameters.getEventEmitter().emitData(response);
+	            	
 
 	                    logger.info("Finished execution");
 	                     }
