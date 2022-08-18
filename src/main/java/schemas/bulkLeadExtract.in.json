@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "ExtractBulkLead": {
+      "type": "Array",
+      "required": true,
+      "title": "Extract bulk Lead",
+      "columnHeaderNames": {
+        "firstName":{
+          "label": "First Name",
+          "required": true,
+          "type":"String",
+          "viewClass": "TextAreaView"
+          },
+          "lastName":{
+          "label": "Last Name",
+          "required": true,
+          "type":"String",
+          "viewClass": "TextAreaView"
+          },
+          "id":{
+          "label": "Marketo Id",
+          "required": true,
+          "type":"String",
+          "viewClass": "TextAreaView"
+          },
+          "email":{
+          "label": "Email Address",
+          "required": true,
+          "type":"String",
+          "viewClass": "TextAreaView"
+          }
+
+        },
+        "format": "CSV",
+        
+        "filter": {
+        "createdAt":{
+        "startAt":{
+         "label": "Start Date",
+          "required": true,
+          "type":"String",
+          "viewClass": "TextFieldWithNoteView"
+          },
+          "endAt":{
+          "label": "End Date",
+          
+          "required": true,
+          "type":"String",
+          "viewClass": "TextFieldWithNoteView"
+          }
+          }
+        
+      }
+      }
+        
+
+
+
+        
+        
+      
+  }
+}
+}

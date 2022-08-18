@@ -8,7 +8,59 @@
         "label": "Access Token",
         "viewClass": "PasswordFieldView",
         "required": true
+      },
+      "apiUrl": {
+    "label": "Marketo API endpoint",
+    "viewClass": "TextAreaView",
+    "required": true
+   }
+    }
+  },
+  "triggers": {
+  "GetLeadById": {
+      "title": "Get Lead By Id",
+      "main": "triggers.GetLeade",
+      "metadata": {
+        "in": "schemas/getLead.in.json"
       }
     }
-  }
+},
+"actions": {
+ "createLead": {
+      "title": "Create Lead",
+      "main": "actions.CreateLead",
+      "dynamicMetadata": "providers.LeadMetaDataProvider"
+      
+   },
+
+"LeadToList": {
+      "title": "Get Lead By Id",
+      "main": "actions.AddLeadTOList",
+      "metadata": {
+        "in": "schemas/AddLeadTOList.in.json"
+      }
+    },
+    "BulkLeadExtract": {
+      "title": "extract the lead in bulk",
+      "main": "actions.BulkLeadExtract",
+      
+       "metadata": {
+        "in": "schemas/bulkLeadExtract.in.json"
+      },
+
+      "fields":{
+          "label": "Fields for output",
+          "required": true,
+          "viewClass": "MultiSelectView",
+          "model": "providers.LeadMetaDataProvider"
+        
+      }
+      }
+      
+      }
+    
+    
+    
 }
+
+
