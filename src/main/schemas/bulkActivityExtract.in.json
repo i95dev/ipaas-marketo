@@ -1,29 +1,28 @@
 {
   "type": "object",
   "properties": {
-     
-   "format": "CSV",
-        
-        "filter": {
-        "createdAt":{
-        "startAt":{
-         "label": "Start Date",
-          "required": true,
-          "type":"String",
-          "viewClass": "TextFieldWithNoteView"
-          },
-          "endAt":{
-          "label": "End Date",
-          
-          "required": true,
-          "type":"String",
-          "viewClass": "TextFieldWithNoteView"
-          }
-          }
-        
-      }
-     }
-   }
+    "format": {
+      "type": "string",
+      "required": true,
+      "title": "In which format you want to export"
+    },
+    "startdate": {
+      "type": "string",
+      "required": true,
+      "title": "Start date"
+    },
+    "enddate": {
+      "type": "string",
+      "required": true,
+      "title": "End Date"
+    },
+    "activityTypeIds": {
+      "type": "object",
+      "required": true,
+      "title": "Activity Type Id"
+    }
+  }
+}
         
 
 
