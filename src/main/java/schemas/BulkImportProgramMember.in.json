@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "filepath": {
+      "type": "enter your csv file path",
+      "required": true,
+      "title": "file Path"
+    }
+    }
+    }

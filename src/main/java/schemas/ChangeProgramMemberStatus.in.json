@@ -1,15 +1,15 @@
 {
   "type": "object",
   "properties": {
-    "ListID": {
+    "statusName": {
       "type": "string",
       "required": true,
-      "title": "List Id"
+      "title": "status name"
     },
-    "LeadId": {
+    "input": {
       "type": "string",
       "required": true,
-      "title": "Lead Id"
+      "title": "Enter the lead Id"
     }
     
   }

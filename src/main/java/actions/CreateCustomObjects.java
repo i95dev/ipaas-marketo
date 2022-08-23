@@ -1,9 +1,6 @@
 package actions;
 
 import java.io.StringReader;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -13,44 +10,42 @@ import org.apache.http.client.methods.HttpPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import Utils.AuthorizationException;
 import Utils.HttpUtils;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Function;
 import io.elastic.api.Message;
 
-public class AddLeadToList implements Function{
-	private static final Logger logger=LoggerFactory.getLogger(AddLeadToList.class);
+public class CreateCustomObjects implements Function{
+	private static final Logger logger=LoggerFactory.getLogger(CreateLead.class);
+	
 
 	@Override
 	public void execute(ExecutionParameters parameters) {
 		final JsonObject configuration = parameters.getConfiguration();
 		final JsonObject body = parameters.getMessage().getBody();
-		JsonString Id=configuration.getJsonString("ListID");
-		JsonString LeadId=configuration.getJsonString("LeadId");
-		if(Id ==null && LeadId==null) {
-			throw new IllegalStateException(" Id is required");
-		}
+		JsonString name=configuration.getJsonString("customObjectName");
+		JsonObject bodyobject =  (JsonObject) Json.createObjectBuilder().add("action", "craeteOnly")
+				.add("dedupeBy", "dedupeFields").add("input",Json.createArrayBuilder().add(body)).build();
 		
-		
-	    final String endpoint="/rest/v1/lists/"+Id.getString()+"/leads.json?id="+LeadId.getString();
-	    HttpPost req= HttpUtils.createPostRequest(configuration, endpoint);
-	    try {
+		String endpoint="/rest/v1/customobjects/"+name.getString()+".json";
+		HttpPost req=HttpUtils.createPostObjectRequest(configuration, endpoint, bodyobject);
+		try {
 			String res=HttpUtils.sendRequest(req);
 			JsonReader jsonReader = Json.createReader(new StringReader(res));
             JsonObject object = jsonReader.readObject();
             jsonReader.close();
             
-
             final Message response= new Message.Builder().body(object).build();
 
-    parameters.getEventEmitter().emitData(response);
+            parameters.getEventEmitter().emitData(response);
 
-    logger.info("Finished execution");
-		} catch (Exception e) {
+            logger.info("Finished execution");
+		} catch (Exception  e) {
+			
 			e.printStackTrace();
 		}
 		
+		
 	}
-
+	
 }

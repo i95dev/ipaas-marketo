@@ -1,41 +1,32 @@
-package actions;
+package triggers;
 
 import java.io.StringReader;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.JsonString;
 
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import Utils.AuthorizationException;
 import Utils.HttpUtils;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Function;
 import io.elastic.api.Message;
 
-public class AddLeadToList implements Function{
-	private static final Logger logger=LoggerFactory.getLogger(AddLeadToList.class);
+public class GetChannelByName implements Function {
+	private static final Logger logger=LoggerFactory.getLogger(GetChannelByName.class);
+	
 
 	@Override
 	public void execute(ExecutionParameters parameters) {
 		final JsonObject configuration = parameters.getConfiguration();
-		final JsonObject body = parameters.getMessage().getBody();
-		JsonString Id=configuration.getJsonString("ListID");
-		JsonString LeadId=configuration.getJsonString("LeadId");
-		if(Id ==null && LeadId==null) {
-			throw new IllegalStateException(" Id is required");
-		}
-		
-		
-	    final String endpoint="/rest/v1/lists/"+Id.getString()+"/leads.json?id="+LeadId.getString();
-	    HttpPost req= HttpUtils.createPostRequest(configuration, endpoint);
-	    try {
+		final JsonObject body=parameters.getMessage().getBody();
+		JsonString name=configuration.getJsonString("channelName");
+		String endpoint="/rest/asset/v1/channel/byName.json?name="+name.getString();
+		HttpGet req=HttpUtils.createGetRequest(configuration, endpoint);
+		try {
 			String res=HttpUtils.sendRequest(req);
 			JsonReader jsonReader = Json.createReader(new StringReader(res));
             JsonObject object = jsonReader.readObject();
@@ -48,9 +39,10 @@ public class AddLeadToList implements Function{
 
     logger.info("Finished execution");
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	}
 
+}
 }

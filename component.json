@@ -1,66 +1,199 @@
 {
-  "title": "Adobe Marketo Component",
-  "description": "elastic.io component for the Adobe Marketo",
-  "docsUrl": "https://github.com/i95dev/ipaas-marketo",
-  "credentials": {
-    "fields": {
-      "accessToken": {
-        "label": "Access Token",
-        "viewClass": "PasswordFieldView",
-        "required": true
-      },
-      "apiUrl": {
-    "label": "Marketo API endpoint",
-    "viewClass": "TextAreaView",
-    "required": true
-   }
-    }
-  },
-  "triggers": {
-  "GetLeadById": {
-      "title": "Get Lead By Id",
-      "main": "triggers.GetLeade",
-      "metadata": {
-        "in": "schemas/getLead.in.json"
-      }
-    }
-},
-"actions": {
- "createLead": {
-      "title": "Create Lead",
-      "main": "actions.CreateLead",
-      "dynamicMetadata": "providers.LeadMetaDataProvider"
-      
-   },
-
-"LeadToList": {
-      "title": "Get Lead By Id",
-      "main": "actions.AddLeadTOList",
-      "metadata": {
-        "in": "schemas/AddLeadTOList.in.json"
-      }
-    },
-    "BulkLeadExtract": {
-      "title": "extract the lead in bulk",
-      "main": "actions.BulkLeadExtract",
-      
-       "metadata": {
-        "in": "schemas/bulkLeadExtract.in.json"
-      },
-
-      "fields":{
-          "label": "Fields for output",
-          "required": true,
-          "viewClass": "MultiSelectView",
-          "model": "providers.LeadMetaDataProvider"
-        
-      }
-      }
-      
-      }
-    
-    
-    
+	"title": "Adobe Marketo Component",
+	"description": "elastic.io component for the Adobe Marketo",
+	"docsUrl": "https://github.com/i95dev/ipaas-marketo",
+	"credentials": {
+		"fields": {
+			"accessToken": {
+				"label": "Access Token",
+				"viewClass": "PasswordFieldView",
+				"required": true
+			},
+			"apiUrl": {
+				"label": "Marketo API endpoint",
+				"viewClass": "TextAreaView",
+				"required": true
+			}
+		}
+	},
+	"triggers": {
+		"GetLeadById": {
+			"title": "Get Lead By Id",
+			"main": "triggers.GetLeade",
+			"metadata": {
+				"in": ""
+			}
+		},
+		"GetChannelByName": {
+			"title": "Get Channel By Name",
+			"main": "triggers.GetChannelByName",
+			"fields": {
+				"channelName": {
+					"label": "enter the channel name ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"GetTokenById": {
+			"title": "Get Token either by program id or folder id",
+			"main": "triggers.GetTokenById",
+			"fields": {
+				"folderName": {
+					"label": "enter type of folder ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"placeholder": "enter either 'Folder' or 'Program'"
+				},
+				"Id": {
+					"label": "enter  id ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"note":"enter folder id or program id based on folder name given"
+				}
+			}
+		},
+		"GetProgramByName": {
+			"title": "Get Program By Name",
+			"main": "triggers.GetProgramByName",
+			"fields": {
+				"programName": {
+					"label": "enter the program name ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"GetLeadActivity": {
+			"title": "Get Lead Activity",
+			"main": "triggers.GetLeadActivities",
+			"fields": {
+				"sinceDatetime": {
+					"label": "enter the date ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"placeholder": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+					"note": "Enter the datetime to start the polling."
+				},
+				"LeadId": {
+					"label": "Lead Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		}
+	},
+	"actions": {
+		"createLead": {
+			"title": "Create Lead",
+			"main": "actions.CreateLead",
+			"dynamicMetadata": "providers.LeadMetaDataProvider"
+		},
+		"LeadToList": {
+			"title": "Adding leads to list",
+			"main": "actions.AddLeadToList",
+			"metadata": {
+				"in": ""
+			},
+			"fields": {
+				"ListID": {
+					"label": "List Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				},
+				"LeadId": {
+					"label": "Lead Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"BulkLeadExtract": {
+			"title": "extract the lead in bulk",
+			"main": "actions.BulkLeadExtract",
+			"metadata": {
+				"in": "schemas/bulkLeadExtract.in.json"
+			},
+			"fields": {
+				"properties": {
+					"label": "Fields for output",
+					"required": true,
+					"viewClass": "MultiSelectView",
+					"model": "providers.LeadMetaDataProvider"
+				}
+			}
+		},
+		"BulkLeadImport": {
+			"title": "Importing bulk leads to marketo",
+			"main": "actions.BulkLeadImport",
+			"metadata": {
+				"in": "schemas/BulkLeadImport.in.json"
+			},
+			"fields": {
+				"format": {
+					"label": "file format",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"BulkImportProgramMember": {
+			"title": "Importing bulk program members to marketo",
+			"main": "actions.BulkImportProgramMember",
+			"metadata": {
+				"in": "schemas/BulkImportProgramMember.in.json"
+			},
+			"fields": {
+				"programId": {
+					"label": "program Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"ChangeProgramMemberStatus": {
+			"title": "Change Program Member Status",
+			"main": "actions.ChangeProgramMemberStatus",
+			"metadata": {
+				"in": "schemas/ChangeProgramMemberStatus.in.json"
+			},
+			"fields": {
+				"programmemberId": {
+					"label": "Program Memeber Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"CloneTheProgram": {
+			"title": "clone the  Program  ",
+			"main": "actions.CloneTheProgram",
+			"metadata": {
+				"in": "schemas/ChangeProgramMemberStatus.in.json"
+			},
+			"fields": {
+				"programId": {
+					"label": "Program  Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"CreateCustomObjects": {
+			"title": "Create Custom Objects",
+			"main": "actions.CreateCustomObjects",
+			"metadata": {
+				"in": "schemas/CreateCustomObjects.in.json"
+			},
+			"fields": {
+				"customObjectName": {
+					"label": "custom Object Name",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		}
+	}
 }
 
 

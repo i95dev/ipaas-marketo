@@ -1,0 +1,30 @@
+{
+	"type": "object",
+	"properties": {
+		"vin": {
+			"type": "string",
+			"required": true,
+			"title": "vin"
+		},
+		"siebelId": {
+			"type": "string",
+			"required": true,
+			"title": "siebelId"
+		},
+		"make": {
+			"type": "string",
+			"required": true,
+			"title": "make"
+		},
+		"model": {
+			"type": "string",
+			"required": true,
+			"title": "model"
+		},
+		"year": {
+			"type": "string",
+			"required": true,
+			"title": "year"
+		}
+	}
+}
