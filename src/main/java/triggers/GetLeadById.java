@@ -19,8 +19,8 @@ import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Function;
 import io.elastic.api.Message;
 
-public class GetLead implements Function {
-	private static final Logger logger=LoggerFactory.getLogger(GetLead.class);
+public class GetLeadById implements Function {
+	private static final Logger logger=LoggerFactory.getLogger(GetLeadById.class);
 			
 
 	@Override

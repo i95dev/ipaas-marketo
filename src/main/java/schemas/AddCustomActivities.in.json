@@ -1,0 +1,35 @@
+{
+	"type": "object",
+	"properties": {
+		"leadId": {
+			"type": "string",
+			"required": true,
+			"title": "leadId"
+		},
+		"activityDate": {
+			"type": "string",
+			"required": true,
+			"title": "activityDate"
+		},
+		"activityTypeId": {
+			"type": "string",
+			"required": true,
+			"title": "activityTypeId"
+		},
+		"primaryAttributeValue": {
+			"type": "string",
+			"required": true,
+			"title": "primaryAttributeValue"
+		},
+		"apiName": {
+			"type": "string",
+			"required": true,
+			"title": "apiName"
+		},
+		"value": {
+			"type": "string",
+			"required": true,
+			"title": "value"
+		}
+	}
+}

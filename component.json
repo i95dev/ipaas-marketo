@@ -81,6 +81,37 @@
 					"viewClass": "TextFieldWithNoteView"
 				}
 			}
+		},
+		"GetTheCustomObjectByName": {
+			"title": "Get The Custom Object By Name",
+			"main": "triggers.GetTheCustomObjectByName",
+			"fields": {
+				"customObjectName": {
+					"label": "custom Object Name ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"GetActivityType": {
+			"title": "GetActivityType",
+			"main": "triggers.GetActivityType"
+		},
+		"GetCompanies": {
+			"title": "Get Companies",
+			"main": "triggers.GetCompanies",
+			"fields": {
+				"type": {
+					"label": "enter the filter type ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				},
+				"value": {
+					"label": "enter the filter value ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
 		}
 	},
 	"actions": {
@@ -192,8 +223,22 @@
 					"viewClass": "TextFieldWithNoteView"
 				}
 			}
+		},
+		"AddCustomActivities": {
+			"title": "Add Custom Activities",
+			"main": "actions.CreateCustomObjects",
+			"metadata": {
+				"in": "schemas/AddCustomActivities.in.json"
+			}
+	},
+		"CreateOrUpdateCompany": {
+			"title": "Create Or Update Company",
+			"main": "actions.CreateOrUpdateCompany",
+			"metadata": {
+				"in": "schemas/CreateAndUpdateCompany.in.json"
+			}
 		}
-	}
+}
 }
 
 

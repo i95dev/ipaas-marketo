@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "externalCompanyId": {
+      "type": "string",
+      "required": true,
+      "title": "external Company Id"
+    },
+    
+    "company": {
+      "type": "string",
+      "required": false,
+      "title": "enter the company name"
+    }
+    
+    
+  }
+}
