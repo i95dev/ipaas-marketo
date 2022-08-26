@@ -10,7 +10,9 @@ import java.security.cert.X509Certificate;
 import java.util.Base64;
 import java.util.Objects;
 
+import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonString;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -130,7 +132,6 @@ public class HttpUtils {
 		final String baseUri = HttpUtils.authorizeRequest(configuration) + objectType;
 
 		HttpPost httpPost = new HttpPost(baseUri);
-
 		try {
 			httpPost.setEntity(new StringEntity(body.toString()));
 		} catch (UnsupportedEncodingException e) {
@@ -160,14 +161,29 @@ public class HttpUtils {
 		final String baseUri = HttpUtils.authorizeRequest(configuration) + objectType;
 
 		HttpPost httpPost = new HttpPost(baseUri);
-		String filename=FilenameUtils.getName(filepath);
+		//String filename=FilenameUtils.getName(filepath);
 		HttpEntity entity = MultipartEntityBuilder.create()
-				.addBinaryBody("file", new File(filepath), ContentType.MULTIPART_FORM_DATA, filename).build();
+				.addBinaryBody("file", new File(filepath), ContentType.MULTIPART_FORM_DATA, "filename").build();
 		httpPost.setEntity(entity);
-
-		// httpPost.addHeader(HTTP.CONTENT_TYPE, "application/json");
-
 		String accessToken = configuration.getString("accessToken");
+		httpPost.addHeader("Authorization", "Bearer " + accessToken);
+		logger.info(httpPost.getEntity().toString() + "was entity set to post");
+		return httpPost;
+	}
+	public static final HttpPost uploadfileRequest(final JsonObject configuration, final String objectType,
+			final String body)  {
+
+		final String baseUri = HttpUtils.authorizeRequest(configuration) + objectType;
+
+		HttpPost httpPost = new HttpPost(baseUri);
+		try {
+			httpPost.setEntity(new StringEntity(body));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+			
+		}
+		httpPost.addHeader(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded");
+           String accessToken = configuration.getString("accessToken");
 		httpPost.addHeader("Authorization", "Bearer " + accessToken);
 		logger.info(httpPost.getEntity().toString() + "was entity set to post");
 		return httpPost;

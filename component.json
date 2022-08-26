@@ -17,85 +17,13 @@
 		}
 	},
 	"triggers": {
-		"GetLeadById": {
-			"title": "Get Lead By Id",
-			"main": "triggers.GetLeade",
-			"metadata": {
-				"in": ""
-			}
-		},
-		"GetChannelByName": {
-			"title": "Get Channel By Name",
-			"main": "triggers.GetChannelByName",
-			"fields": {
-				"channelName": {
-					"label": "enter the channel name ",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView"
-				}
-			}
-		},
-		"GetTokenById": {
-			"title": "Get Token either by program id or folder id",
-			"main": "triggers.GetTokenById",
-			"fields": {
-				"folderName": {
-					"label": "enter type of folder ",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView",
-					"placeholder": "enter either 'Folder' or 'Program'"
-				},
-				"Id": {
-					"label": "enter  id ",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView",
-					"note":"enter folder id or program id based on folder name given"
-				}
-			}
-		},
-		"GetProgramByName": {
-			"title": "Get Program By Name",
-			"main": "triggers.GetProgramByName",
-			"fields": {
-				"programName": {
-					"label": "enter the program name ",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView"
-				}
-			}
-		},
-		"GetLeadActivity": {
-			"title": "Get Lead Activity",
-			"main": "triggers.GetLeadActivities",
-			"fields": {
-				"sinceDatetime": {
-					"label": "enter the date ",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView",
-					"placeholder": "yyyy-MM-dd'T'HH:mm:ss'Z'",
-					"note": "Enter the datetime to start the polling."
-				},
-				"LeadId": {
-					"label": "Lead Id",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView"
-				}
-			}
-		},
-		"GetTheCustomObjectByName": {
-			"title": "Get The Custom Object By Name",
-			"main": "triggers.GetTheCustomObjectByName",
-			"fields": {
-				"customObjectName": {
-					"label": "custom Object Name ",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView"
-				}
-			}
-		},
 		"GetActivityType": {
 			"title": "GetActivityType",
 			"main": "triggers.GetActivityType"
+		},
+		"GetChannels": {
+			"title": "Get Channels",
+			"main": "triggers.GetChannels"
 		},
 		"GetCompanies": {
 			"title": "Get Companies",
@@ -115,6 +43,82 @@
 		}
 	},
 	"actions": {
+		"GetLeadById": {
+			"title": "Get Lead By Id",
+			"main": "actions.GetLeadById",
+			"metadata": {
+				"in": "GetLeadById.in.json"
+			}
+		},
+		"GetLeadActivity": {
+			"title": "Get Lead Activity",
+			"main": "actions.GetLeadActivities",
+			"fields": {
+				"sinceDatetime": {
+					"label": "enter the date ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"placeholder": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+					"note": "Enter the datetime to start the polling."
+				},
+				"LeadId": {
+					"label": "Lead Id",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"GetTheCustomObjectByName": {
+			"title": "Get The Custom Object By Name",
+			"main": "actions.GetTheCustomObjectByName",
+			"fields": {
+				"customObjectName": {
+					"label": "custom Object Name ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"GetChannelByName": {
+			"title": "Get Channel By Name",
+			"main": "actions.GetChannelByName",
+			"fields": {
+				"channelName": {
+					"label": "enter the channel name ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
+		"GetTokenById": {
+			"title": "Get Token either by program id or folder id",
+			"main": "actions.GetTokenById",
+			"fields": {
+				"folderName": {
+					"label": "enter type of folder ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"placeholder": "enter either 'Folder' or 'Program'"
+				},
+				"Id": {
+					"label": "enter  id ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView",
+					"note": "enter folder id or program id based on folder name given"
+				}
+			}
+		},
+		"GetProgramByName": {
+			"title": "Get Program By Name",
+			"main": "actions.GetProgramByName",
+			"fields": {
+				"programName": {
+					"label": "enter the program name ",
+					"required": true,
+					"viewClass": "TextFieldWithNoteView"
+				}
+			}
+		},
 		"createLead": {
 			"title": "Create Lead",
 			"main": "actions.CreateLead",
@@ -182,6 +186,13 @@
 				}
 			}
 		},
+		"BulkImportCustomObjects": {
+			"title": "Importing bulk custom objects to marketo",
+			"main": "actions.BulkImportCustomObjects",
+			"metadata": {
+				"in": "schemas/BulkImportCustomObjects.in.json"
+			}
+		},
 		"ChangeProgramMemberStatus": {
 			"title": "Change Program Member Status",
 			"main": "actions.ChangeProgramMemberStatus",
@@ -191,20 +202,6 @@
 			"fields": {
 				"programmemberId": {
 					"label": "Program Memeber Id",
-					"required": true,
-					"viewClass": "TextFieldWithNoteView"
-				}
-			}
-		},
-		"CloneTheProgram": {
-			"title": "clone the  Program  ",
-			"main": "actions.CloneTheProgram",
-			"metadata": {
-				"in": "schemas/ChangeProgramMemberStatus.in.json"
-			},
-			"fields": {
-				"programId": {
-					"label": "Program  Id",
 					"required": true,
 					"viewClass": "TextFieldWithNoteView"
 				}
@@ -230,15 +227,78 @@
 			"metadata": {
 				"in": "schemas/AddCustomActivities.in.json"
 			}
-	},
+		},
 		"CreateOrUpdateCompany": {
 			"title": "Create Or Update Company",
 			"main": "actions.CreateOrUpdateCompany",
 			"metadata": {
 				"in": "schemas/CreateAndUpdateCompany.in.json"
 			}
+		},
+		"CloneTheProgram": {
+			"title": "Clone The Program",
+			"main": "actions.CloneTheProgram",
+			"metadata": {
+				"in": "schemas/CloneTheProgram.in.json"
+			}
+		},
+		"CreateTheFolder": {
+			"title": "Create The Folder",
+			"main": "actions.CreateTheFolder",
+			"metadata": {
+				"in": "schemas/CreateTheFolder.in.json"
+			}
+		},
+		"UpdateTheFolder": {
+			"title": "Update The Folder",
+			"main": "actions.UpdateTheFolder",
+			"metadata": {
+				"in": "schemas/UpdateTheFolder.in.json"
+			}
+		},
+		"CreateTheProgram": {
+			"title": "Create The Folder",
+			"main": "actions.CreateTheProgram",
+			"metadata": {
+				"in": "schemas/CreateTheProgram.in.json"
+			}
+		},
+		"ApproveTheProgramById": {
+			"title": "Approve The Program by Id",
+			"main": "actions.ApproveTheProgramById",
+			"metadata": {
+				"in": "schemas/ApproveTheProgramById.in.json"
+			}
+		},
+		"GetEmailById": {
+			"title": "Get Email by Id",
+			"main": "actions.GetEmailById",
+			"metadata": {
+				"in": "schemas/GetEmailById.in.json"
+			}
+		},
+		"CreateAnEmail": {
+			"title": "Create An Email",
+			"main": "actions.CreateAnEmail",
+			"metadata": {
+				"in": "schemas/CreateAnEmail.in.json"
+			}
+		},
+		"UpdateTheEmail": {
+			"title": "Update The Email",
+			"main": "actions.UpdateTheEmail",
+			"metadata": {
+				"in": "schemas/UpdateTheEmail.in.json"
+			}
+		},
+		"ApproveTheEmail": {
+			"title": "Approve The Email",
+			"main": "actions.ApproveTheEmail",
+			"metadata": {
+				"in": "schemas/ApproveTheEmail.in.json"
+			}
 		}
-}
+	}
 }
 
 

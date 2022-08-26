@@ -1,10 +1,10 @@
 {
   "type": "object",
   "properties": {
-    "filepath": {
+  "emailID": {
       "type": "string",
       "required": true,
-      "title": "file path"
+      "title": "Email Id "
     }
     }
     }

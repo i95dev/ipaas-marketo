@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+  "programId": {
+      "type": "string",
+      "required": true,
+      "title": "program Id"
+    },
+    "programName": {
+      "type": "string",
+      "required": true,
+      "title": "Program Name"
+    },
+    "folderType": {
+      "type": "string",
+      "required": true,
+      "title": "Folder Type"
+    },
+    "folderId": {
+      "type": "string",
+      "required": true,
+      "title": " Id"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "title": "description"
+    }
+    }
+    }

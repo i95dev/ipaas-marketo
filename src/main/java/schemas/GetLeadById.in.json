@@ -1,10 +1,10 @@
 {
   "type": "object",
   "properties": {
-    "filepath": {
+  "ID": {
       "type": "string",
       "required": true,
-      "title": "file path"
+      "title": "Lead Id"
     }
     }
     }

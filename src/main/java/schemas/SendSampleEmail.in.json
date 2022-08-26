@@ -1,0 +1,20 @@
+{
+	"type": "object",
+	"properties": {
+		"EmailId": {
+			"type": "string",
+			"required": true,
+			"title": " EmailId"
+		},
+		"emailAddress": {
+			"type": "string",
+			"required": true,
+			"title": "email Address"
+		},
+		"textOnly": {
+			"type": "boolean",
+			"required": false ,
+			"title": "text Only"
+		} 
+		}
+		}

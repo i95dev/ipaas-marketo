@@ -1,0 +1,50 @@
+{
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"required": true,
+			"title": " Name"
+		},
+		"template": {
+			"type": "string",
+			"required": true,
+			"title": "template Id"
+		},
+		"subject": {
+			"type": "string",
+			"required": true,
+			"title": "subject"
+		},
+		"fromName": {
+			"type": "string",
+			"required": true,
+			"title": "from Name"
+		},
+		"fromEmail": {
+			"type": "string",
+			"required": true,
+			"title": "from Email"
+		},
+		"replyEmail": {
+			"type": "string",
+			"required": true,
+			"title": "reply Email"
+		},
+		"folderType": {
+			"type": "string",
+			"required": true,
+			"title": "Folder Type"
+		},
+		"folderId": {
+			"type": "string",
+			"required": true,
+			"title": " Id"
+		},
+		"description": {
+			"type": "string",
+			"required": false,
+			"title": "description"
+		}
+	}
+}

@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+  "programId": {
+      "type": "string",
+      "required": true,
+      "title": "programId "
+    },
+  "startDate": {
+      "type": "string",
+      "required": false,
+      "title": "start Date"
+    },
+    "cost": {
+      "type": "string",
+      "required": false,
+      "title": "cost"
+    },
+    "note": {
+      "type": "string",
+      "required": false,
+      "title": "note"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "title": " new name"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "title": "new description"
+    }
+    }
+    }

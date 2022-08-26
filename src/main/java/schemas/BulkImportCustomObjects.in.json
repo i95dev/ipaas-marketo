@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "filepath": {
+      "type": "string",
+      "required": true,
+      "title": "file Path"
+    },
+    "format": {
+      "type": "string",
+      "required": true,
+      "title": "format"
+    },
+    "apiName": {
+      "type": "string",
+      "required": true,
+      "title": "Custom object api Name"
+    }
+    }
+    }

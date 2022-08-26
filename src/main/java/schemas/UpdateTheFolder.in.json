@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "string",
+      "required": true,
+      "title": "folder id to update"
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "title": "Folder Type"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "title": " updated name"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "title": "updated description"
+    }
+    }
+    }

@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+  "programName": {
+      "type": "string",
+      "required": true,
+      "title": "program Name"
+    },
+    "channel": {
+      "type": "string",
+      "required": true,
+      "title": "channel"
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "title": "type"
+    },
+    "folderType": {
+      "type": "string",
+      "required": true,
+      "title": "Folder Type"
+    },
+    "folderId": {
+      "type": "string",
+      "required": true,
+      "title": " Id"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "title": "description"
+    }
+    }
+    }

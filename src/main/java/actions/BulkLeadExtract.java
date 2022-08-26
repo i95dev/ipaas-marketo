@@ -4,6 +4,7 @@ import java.io.StringReader;
 
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
@@ -33,7 +34,6 @@ public class BulkLeadExtract implements Function {
 
 	@Override
 	public void execute(ExecutionParameters parameters) {
-		JsonObjectBuilder Status = Json.createObjectBuilder();
 		final JsonObject configuration = parameters.getConfiguration();
 		final JsonObject body = parameters.getMessage().getBody();
 		JsonString fields=configuration.getJsonString("properties");
@@ -45,9 +45,6 @@ public class BulkLeadExtract implements Function {
 		JsonObject headersobject = (JsonObject) Json.createObjectBuilder().add("firstName", "First Name").add("lastName", "Last Name")
 				.add("id", "Marketo Id").add("email", "Email Address").build();
 		JsonObject dateobject = Json.createObjectBuilder().add("startAt", start).add("endAt", end).build();
-		
-		
-		
 		JsonObject reobject = Json.createObjectBuilder().add("fields",
                 Json.createArrayBuilder().add(fields).build()).add("format", format)
 				.add("columnHeaderNames", headersobject).add("filter", Json.createObjectBuilder().add("createdAt", dateobject)).build();
