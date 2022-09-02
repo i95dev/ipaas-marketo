@@ -1,0 +1,66 @@
+{
+	"type": "object",
+	"properties": {
+		"requestId": {
+			"label": " requestId",
+			"required": true,
+			"type": "String"
+		},
+		"displayName": {
+			"label": "Display Name",
+			"required": true,
+			"type": "String"
+			},
+		"name": {
+			"label": " Name",
+			"required": true,
+			"type": "String"
+		},
+		"description": {
+			"label": "Description",
+			"required": true,
+			"type": "String",
+			"viewClass": "TextAreaView"
+		},
+		"dataType": {
+			"label": "Data Type",
+			"required": true,
+			"type": "String"
+		},
+		"length": {
+			"label": "length",
+			"required": true,
+			"type": "String"
+		},
+		"isHidden": {
+			"label": "Is Hidden",
+			"required": true,
+			"type": "String"
+		},
+		"isHtmlEncodingInEmail": {
+			"label": "Is Html Encoding In Email",
+			"required": true,
+			"type": "String"
+		},
+		"isSensitive": {
+			"label": "Is Sensitive",
+			"required": true,
+			"type": "String"
+		},
+		"isCustom": {
+			"label": "Is Custom",
+			"required": true,
+			"type": "String"
+		},
+		"isApiCreated": {
+			"label": "Is Api Created",
+			"required": true,
+			"type": "String"
+		}
+		
+}
+
+}
+   
+  
+     
