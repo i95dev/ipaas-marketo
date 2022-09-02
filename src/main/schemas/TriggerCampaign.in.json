@@ -1,0 +1,29 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {
+			"label": " Lead id",
+			"required": true,
+			"type": "String"
+	},
+		"Campaignid": {
+			"label": " Campaign id",
+			"required": true,
+			"type": "String"
+		},
+		
+		"name": {
+			"label": "Name",
+			"required": true,
+			"type": "String"
+		
+		},
+		"value": {
+			"label": "value",
+			"required": true,
+			"type": "String"
+		}
+	
+		
+    }
+ }

@@ -1,0 +1,31 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {
+			"label": " id",
+			"required": true,
+			"type": "String"
+			
+		},
+		"name": {
+			"label": "Name",
+			"required": true,
+			"type": "String"
+			
+		
+		},
+		"value": {
+			"label": "value",
+			"required": true,
+			"type": "String"
+			
+		},
+		"runAt": {
+			"label": "runAt",
+			"required": true,
+			"type": "String"
+			
+		}
+		
+    }
+ }

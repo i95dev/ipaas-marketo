@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+   
+    "Name": {
+      "type": "string",
+      "required": true,
+      "title": "Name"
+    },
+     "id": {
+      "type": "string",
+      "required": true,
+      "title": "Folder id"
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "title": "Folder Type"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "title": "Description"
+    }
+  }
+ }

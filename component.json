@@ -17,67 +17,172 @@
 		}
 	},
 	"triggers": {
-		"GetLeadById": {
-			"title": "Get Lead By Id",
-			"main": "io.elastic.i95dev.marketo.triggers.GetLead",
-			"metadata": {
-				"in": "schemas/getLead.in.json"
-			}
-		},
-		"actions": {
-		"createLead": {
-			"title": "Create Lead",
-			"main": "actions.CreateLead",
-			"dynamicMetadata": "providers.LeadMetaDataProvider"
-		},
-		"LeadToList": {
-			"title": "Get Lead By Id",
-			"main": "actions.AddLeadTOList",
-			"metadata": {
-				"in": "schemas/AddLeadTOList.in.json"
-			}
-		},
-		 "BulkLeadExtract": {
-      "title": "extract the lead in bulk",
-      "main": "actions.BulkLeadExtract",
-      
-       "metadata": {
-        "in": "schemas/bulkLeadExtract.in.json"
-      },
-
-      "fields":{
-          "label": "Fields for output",
-          "required": true,
-          "viewClass": "MultiSelectView",
-          "model": "providers.LeadMetaDataProvider"
-        
-      },
-		"BulkProgramMemberExtract": {
-			"title": "Bulk Extract Program Member",
-			"main": "io.elastic.i95dev.marketo.actions.BulkProgramMemberExtract",
-			"dynamicMetadata": "",
-			"fields": {
-				"properties": {
-					"label": "Select Fields For Output",
-					"type": "Array",
-					"required": true,
-					"viewClass": "MultiSelectView",
-					"model": "io.elastic.i95dev.marketo.providers.BulkProgramMemberExtractProvider"
+		
+			"GetLeadById": {
+				"title": "Get Lead By Id",
+				"main": "io.elastic.i95dev.marketo.triggers.GetLead",
+				"metadata": {
+					"in": "/src/main/schemas/getLeads.in.json"
 				},
-				"filter": {
-					"programId": {
-						"label": "program Id",
-						"required": true,
-						"viewClass": "TextFieldWithNoteView",
-						"model": "io.elastic.i95dev.marketo.providers.ProgramIDMetaDataProvider"
+				"GetOpportunityByName": {
+					"title": "Get Opportunity By Name",
+					"main": "io.elastic.i95dev.marketo.triggers.GetOpportunityByName",
+					"metadata": {
+						"in": "/src/main/schemas/getOpportunityByName.in.json"
+					}
+				},
+				"GetCampiagnsByID": {
+					"title": "Get Campaigns By ID",
+					"main": "io.elastic.i95dev.marketo.triggers.GetCampiagnsByID",
+					"Fields": {
+						"CampaignId": {
+							"label": "Campaign Id",
+							"type": "string",
+							"required": true,
+							"viewClass": "TextFieldWithNoteView"
+						}
+					}
+				},
+				"GetCampiagnsByName": {
+					"title": "Get Campaigns By Name",
+					"main": "io.elastic.i95dev.marketo.triggers.GetCampiagnsByName",
+					"fileds": {
+						"CampaignName": {
+							"label": "Campaign Name",
+							"type": "string",
+							"required": true,
+							"viewClass": "TextFieldWithNoteView"
+						}
+					}
+				},
+				"actions": {
+					"createLead": {
+						"title": "Create Lead",
+						"main": "io.elastic.i95dev.marketo.actions.CreateLead",
+						"dynamicMetadata": "io.elastic.i95dev.marketo.providers.LeadMetaDataProvider"
+					},
+					"LeadToList": {
+						"title": "Get Lead By Id",
+						"main": "io.elastic.i95dev.marketo.actions.AddingToLeadList",
+						"metadata": {
+							"in": "/src/main/schemas/AddingLeadLisy.in.json"
+						}
+					},
+					"BulkLeadExtract": {
+						"title": "extract the lead in bulk",
+						"main": "io.elastic.i95dev.marketo.actions.BulkExportLead",
+						"metadata": {
+							"in": "/src/main/schemas/BulkExportLead.in.json"
+						},
+						"fields": {
+							"label": "Fields for output",
+							"required": true,
+							"viewClass": "MultiSelectView",
+							"model": "io.elastic.i95dev.marketo.providers.LeadMetaDataProvider"
+						},
+						"BulkActivityExtract": {
+							"title": "extract bulk activities",
+							"main": "io.elastic.i95dev.marketo.actions.BulkActivityExtract",
+							"metadata": {
+								"in": "/src/main/schemas/BulkExtractActivity.in.json"
+							},
+							"fields": {
+								"activityTypeId's": {
+									"label": "activity Type Ids",
+									"type": "array",
+									"required": true,
+									"viewClass": "MultiSelectView",
+									"model": "io.elastic.i95dev.marketo.providers.BulkActivityMetaDataProvider"
+								}
+							}
+						},
+						"BulkProgramMemberExtract": {
+							"title": "Bulk Extract Program Member",
+							"main": "io.elastic.i95dev.marketo.actions.BulkProgramMemberExtract",
+							"fields": {
+								"properties": {
+									"label": "Select Fields For Output",
+									"type": "Array",
+									"required": true,
+									"viewClass": "MultiSelectView",
+									"model": "io.elastic.i95dev.marketo.providers.BulkProgramMemberExtractProvider"
+								},
+								"filter": {
+									"programId": {
+										"label": "program Id",
+										"required": true,
+										"viewClass": "TextFieldWithNoteView",
+										"model": "io.elastic.i95dev.marketo.providers.ProgramIDMetaDataProvider"
+									}
+								}
+							}
+						},
+						"CreateOpportunity": {
+							"title": "Create Opportunity",
+							"main": "io.elastic.i95dev.marketo.actions.CreateOpportunity",
+							"fields": {
+								"OpportunityName": {
+									"label": " Opportunity Name",
+									"type": "string",
+									"required": true,
+									"viewClass": "TextFieldWithNoteView"
+								}
+							}
+						},
+						"ScheduleCampaign": {
+							"title": "Schedule Campaign",
+							"main": "io.elastic.i95dev.marketo.actions.ScheduleCampaign",
+							"metadata": {
+								"in": "/src/main/schemas/ScheduleCampaign.in.json"
+							}
+						},
+						"TriggerCampaign": {
+							"title": "Trigger Campaign",
+							"main": "io.elastic.i95dev.marketo.actions.TriggerCampaign",
+							"metadata": {
+								"in": "/src/main/schemas/TriggerCampaign.in.json"
+							}
+						},
+						"CreateCampaign": {
+							"title": "Create Campaign",
+							"main": "io.elastic.i95dev.marketo.actions.CreateCampaign",
+							"metadata": {
+								"in": "/src/main/schemas/CreateCampaign.in.json"
+							}
+						},
+						"UpdateCampaign": {
+							"title": "Update Campaign",
+							"main": "io.elastic.i95dev.marketo.actions.UpdateCampaign",
+							"metadata": {
+								"in": "/src/main/schemas/UpdateCampaign.in.json"
+							}
+						},
+						"CreateOpportunityRoles": {
+							"title": "Create Opportunity Roles",
+							"main": "io.elastic.i95dev.marketo.actions.CreateOpportunityRoles",
+							"fields": {
+								"properties": {
+									"label": "Select Fields For Output",
+									"type": "Array",
+									"required": true,
+									"viewClass": "MultiSelectView",
+									"model": "io.elastic.i95dev.marketo.providers.OpportunityRolesMetaDataProvider"
+								}
+							}
+						}
 					}
 				}
 			}
 		}
 	}
 }
-}
-}
+
+
+
+  
+  
+
+
  
 
   
